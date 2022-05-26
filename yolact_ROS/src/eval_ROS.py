@@ -5,7 +5,6 @@ import rospy
 from yolact_ROS.msg import Segment_centers
 from std_msgs.msg import Float32
 from std_msgs.msg import Int64
-from sensor_msgs.msg import Image as ImageMsg
 from data import COCODetection, get_label_map, MEANS, COLORS
 from yolact import Yolact
 from utils.augmentations import BaseTransform, FastBaseTransform, Resize
