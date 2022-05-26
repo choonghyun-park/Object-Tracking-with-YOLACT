@@ -11,12 +11,15 @@ This is an object tracking alogorithm using yolact segmentation detector. The al
 <img src = "https://user-images.githubusercontent.com/78340346/170453499-066a6601-f690-4bc3-9a71-6debc8962c33.png" width=640 height=480> 
 <img src = "https://user-images.githubusercontent.com/78340346/170453504-63f05509-4b74-4953-b5af-d9297a352fd4.png" width=640 height=480>
 
-## Shortcuts
-The source-codes are pasted in same directory location of `yolact` and `mot`. Also, packages work on ROS catkin workspace. Here is simple installation procedure. Basically 'yolact' prerequisites like virtual env, tensorflow, ... should be ready before shortcut.
-### Installation
-Create workspace
-```
+## Installation
+**Create workspace**
+```Terminal
 mkdir -p tracking_ws/src
 cd tracking_ws
 catkin_make
 ```
+
+
+## Shortcuts
+The source-codes are pasted in same directory location of `yolact` and `mot`. Also, packages work on ROS catkin workspace. Here is simple installation procedure. Basically 'yolact' prerequisites like virtual env, tensorflow, ... should be ready before shortcut.
+
