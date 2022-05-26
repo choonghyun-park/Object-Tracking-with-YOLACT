@@ -8,10 +8,7 @@ This is an object tracking alogorithm using yolact segmentation detector. The al
 6. Using multi-object-tracking algorithmn for center points, tracking the objects and calculate the current velocity(vx,vy,vz)
 7. Finally publish the `object_id`, `position`, `velocity` as a result of object tracking 
 
-<img src = "https://user-images.githubusercontent.com/78340346/170453499-066a6601-f690-4bc3-9a71-6debc8962c33.png" width=480 height=360> 
-<img src = "https://user-images.githubusercontent.com/78340346/170453504-63f05509-4b74-4953-b5af-d9297a352fd4.png" width=480 height=360>
-
-![realsense](https://user-images.githubusercontent.com/78340346/170453499-066a6601-f690-4bc3-9a71-6debc8962c33.png)
-![bird-eyed-view](https://user-images.githubusercontent.com/78340346/170453504-63f05509-4b74-4953-b5af-d9297a352fd4.png)
+<img src = "https://user-images.githubusercontent.com/78340346/170453499-066a6601-f690-4bc3-9a71-6debc8962c33.png" width=640 height=480> 
+<img src = "https://user-images.githubusercontent.com/78340346/170453504-63f05509-4b74-4953-b5af-d9297a352fd4.png" width=640 height=480>
 
 ## Shortcuts
