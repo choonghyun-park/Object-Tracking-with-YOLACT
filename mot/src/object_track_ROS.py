@@ -108,10 +108,20 @@ def bird_eyed_view_tracking(msg):
 	
 	tracker.update(centers, states)
 
-	cv2.line(frame, (window[0]/2,0),(window[0]/2,window[1]), (0,0,0),1)
+	# draw axis
+	cv2.line(frame, (window[0]/2,0),(window[0]/2,window[1]), (0,0,0),1) 
 	cv2.line(frame, (window[0]/2,0),(window[0]/2-10,10), (0,0,0),1)
+	cv2.putText(frame,"z(m)", (window[0]/2+20,20),0, 0.5, (0,0,0),2)
 	cv2.line(frame, (0,window[1]-40),(window[0],window[1]-40), (0,0,0),1)
 	cv2.line(frame, (window[0]-10,window[1]-30),(window[0],window[1]-40), (0,0,0),1)
+	cv2.putText(frame,"x(m)", (window[0]-40,window[1]-20),0, 0.5, (0,0,0),2)
+
+	# draw units on axis in 1 meter (1pixel = 10mm, 100 pixel = 1m)
+	for i in range(int(window[0]/100)):
+		cv2.line(frame, (window[0]/2+i*100,window[1]-50),(window[0]/2+i*100,window[1]-30), (0,0,0),1)
+		cv2.line(frame, (window[0]/2-i*100,window[1]-50),(window[0]/2-i*100,window[1]-30), (0,0,0),1)
+	for i in range(int(window[1]/100)):
+		cv2.line(frame, (window[0]/2-10,window[1]-40-i*100),(window[0]/2+10,window[1]-40-i*100),(0,0,0),1)
 
 	for j in range(len(tracker.tracks)):
 		if (len(tracker.tracks[j].trace) > 1):
@@ -195,7 +205,7 @@ def forward_view_tracking(msg):
 					(127, 127, 255), (255, 0, 255), (255, 127, 255),
 					(127, 0, 255), (127, 0, 127),(127, 10, 255), (0,255, 127)]
 	window = (640,480)
-	frame = createimage(480,640)
+	frame = createimage(window[0],window[1])
 	
 	tracker.update(centers, states)
 	
@@ -212,13 +222,13 @@ def forward_view_tracking(msg):
 			current = (x,y,z,sec)
 			current_rd = (rd(x),rd(y),rd(z),rd(sec%100))
 
-			pixel_x_0 = int(tracker.tracks[j].trace[0][0,0])
-			pixel_y_0 = int(tracker.tracks[j].trace[0][0,1])
+			pixel_x_0 = int(tracker.tracks[j].trace[-2][0,0])
+			pixel_y_0 = int(tracker.tracks[j].trace[-2][0,1])
 
-			x_b = tracker.tracks[j].trace_state[0][0,0]
-			y_b = tracker.tracks[j].trace_state[0][0,1]
-			z_b = tracker.tracks[j].trace_state[0][0,2]
-			sec_b = tracker.tracks[j].trace_state[0][0,3]
+			x_b = tracker.tracks[j].trace_state[-2][0,0]
+			y_b = tracker.tracks[j].trace_state[-2][0,1]
+			z_b = tracker.tracks[j].trace_state[-2][0,2]
+			sec_b = tracker.tracks[j].trace_state[-2][0,3]
 			before = (x_b, y_b,z_b,sec_b)
 
 			velocity = vel(current, before)
@@ -226,11 +236,39 @@ def forward_view_tracking(msg):
 			tl = (pixel_x-10,pixel_y-10)
 			br = (pixel_x+10,pixel_y+10)
 
-			# bird-eyed-view visualization
-			cv2.line(frame, (window[0]/2,0),(window[0]/2,window[1]), (0,0,0),1)
+			# frame based visualization
+			cv2.rectangle(frame,tl,br,track_colors[j],1)
+			cv2.putText(frame,str(tracker.tracks[j].trackId), (pixel_x-10,pixel_y-20),0, 0.5, track_colors[j],2)
+			for k in range(len(tracker.tracks[j].trace)):
+				pixel_x_k = int(tracker.tracks[j].trace[k][0,0])
+				pixel_y_k = int(tracker.tracks[j].trace[k][0,1])	
+
+				cv2.circle(frame,(pixel_x_k,pixel_y_k), 3, track_colors[j],-1)
+
+			cv2.line(frame, (pixel_x,pixel_y),(pixel_x_0,pixel_y_0), (0,100,0),3)
+			cv2.putText(frame,"vel :"+str(velocity), (pixel_x+10,pixel_y+20),0, 0.5, (0,200,0),2)
+			cv2.putText(frame,"pos :"+str(current_rd),(pixel_x+10,pixel_y+40),0,0.5, (0,200,0),2)
+
+			cv2.circle(frame,(pixel_x,pixel_y), 6, track_colors[j],-1)
+			cv2.circle(frame,(pixel_x,pixel_y), 6, (0,0,0),-1)
+
+			# If you want to see the result in bird-eyed-view, uncomment below and comment #frame based visualization
+			'''
+			# draw axis
+			cv2.line(frame, (window[0]/2,0),(window[0]/2,window[1]), (0,0,0),1) 
 			cv2.line(frame, (window[0]/2,0),(window[0]/2-10,10), (0,0,0),1)
+			cv2.putText(frame,"z(m)", (window[0]/2+20,20),0, 0.5, (0,0,0),2)
 			cv2.line(frame, (0,window[1]-40),(window[0],window[1]-40), (0,0,0),1)
 			cv2.line(frame, (window[0]-10,window[1]-30),(window[0],window[1]-40), (0,0,0),1)
+			cv2.putText(frame,"x(m)", (window[0]-40,window[1]-20),0, 0.5, (0,0,0),2)
+
+			# draw units on axis in 1 meter (1pixel = 10mm, 100 pixel = 1m)
+			for i in range(int(window[0]/100)):
+				cv2.line(frame, (window[0]/2+i*100,window[1]-50),(window[0]/2+i*100,window[1]-30), (0,0,0),1)
+				cv2.line(frame, (window[0]/2-i*100,window[1]-50),(window[0]/2-i*100,window[1]-30), (0,0,0),1)
+			for i in range(int(window[1]/100)):
+				cv2.line(frame, (window[0]/2-10,window[1]-40-i*100),(window[0]/2+10,window[1]-40-i*100),(0,0,0),1)
+
 			cv_x, cv_z = mapping(x,z,window)
 			cv_tl = (cv_x-10,cv_z-10)
 			cv_br = (cv_x+10,cv_z+10)
@@ -243,23 +281,17 @@ def forward_view_tracking(msg):
 			cv2.rectangle(frame,cv_tl,cv_br,track_colors[j],1)
 			cv2.putText(frame,str(tracker.tracks[j].trackId), (cv_x-10,cv_z-20),0, 0.5, track_colors[j],2)
 			cv2.circle(frame,(cv_x,cv_z), 3, (0,0,0),-1)
+			'''
 
-
-			# frame based visualization
-			# cv2.rectangle(frame,tl,br,track_colors[j],1)
-			# cv2.putText(frame,str(tracker.tracks[j].trackId), (pixel_x-10,pixel_y-20),0, 0.5, track_colors[j],2)
-			# for k in range(len(tracker.tracks[j].trace)):
-			# 	pixel_x_k = int(tracker.tracks[j].trace[k][0,0])
-			# 	pixel_y_k = int(tracker.tracks[j].trace[k][0,1])	
-
-			# 	cv2.circle(frame,(pixel_x_k,pixel_y_k), 3, track_colors[j],-1)
-
-			# cv2.line(frame, (pixel_x,pixel_y),(pixel_x_0,pixel_y_0), (0,100,0),3)
-			# cv2.putText(frame,"vel :"+str(velocity), (pixel_x+10,pixel_y+20),0, 0.5, (0,200,0),2)
-			# cv2.putText(frame,"pos :"+str(current_rd),(pixel_x+10,pixel_y+40),0,0.5, (0,200,0),2)
-
-			# cv2.circle(frame,(pixel_x,pixel_y), 6, track_colors[j],-1)
-			# cv2.circle(frame,(pixel_x,pixel_y), 6, (0,0,0),-1)
+			msg = obj_tracking()
+			msg.object_id = tracker.tracks[j].trackId
+			msg.x = current[0]
+			msg.y = current[1]
+			msg.z = current[2]
+			msg.vx = velocity[0]
+			msg.vy = velocity[1]
+			msg.vz = velocity[2]
+			pub.publish(msg)
 
 	cv2.imshow('image',frame)
 		
