@@ -18,6 +18,12 @@ mkdir -p tracking_ws/src
 cd tracking_ws
 catkin_make
 ```
+**Create yolact_ROS package**
+```
+cd ~/tracking_ws/src
+
+
+```
 
 
 ## Shortcuts
