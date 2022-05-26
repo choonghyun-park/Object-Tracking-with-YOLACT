@@ -1,5 +1,5 @@
 # Object-Tracking-with-YOLACT
-This is an object tracking alogorithm using yolact segmentation detector. The algorithm consists of 2 main packages : mot, yolact_ROS and communicate with ROS. To obtain position value of objects, we used depth camera model 'D435i' of realsense company. This is overall tracking workflow.
+This is an object tracking alogorithm using yolact segmentation detector. The algorithm consists of 2 main packages : `mot`, `yolact_ROS` and communicate with ROS. To obtain position value of objects, we used depth camera model 'D435i' of realsense company. This is overall tracking workflow.
 1. Yolact find the object and its instance segmentation
 2. Calculate center point of segmentations
 3. Obtain position values(x,y,z) of center points using depth camera
