@@ -42,12 +42,12 @@ git clone https://github.com/mabhisharma/Multi-Object-Tracking-with-Kalman-Filte
 ```
 All installations done. Now you ready to use `Object-Tracking-with-YOLACT`. (**Note : You should be ready on prerequisites for using yolact.**)
 ## Run shourtcuts
-roscore\
+**roscore**\
 Terminal:
 ```terminal
 roscore
 ```
-rosrun yolact\
+**yolact_ROS**\
 Terminal :
 ```Terminal
 cd ~/tracking_ws
@@ -55,7 +55,7 @@ source devel/setup.bash
 conda activate yolact
 rosrun yolact_ROS eval_ROS.py --trained_model=src/yolact_ROS/src/weights/yolact_resnet50_54_800000.pth --score_threshold=0.5 --top_k=15 --image=depth
 ```
-rosrun mot\
+**mot**\
 Terminal :
 ```
 cd ~/tracking_ws
