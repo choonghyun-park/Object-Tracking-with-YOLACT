@@ -33,6 +33,7 @@ cd ~/YOUR_DIRECTORY
 git clone https://github.com/dbolya/yolact.git
 # Paste resources to ~/tracking_ws/src/yolact_ROS/src
 ```
+You need the weights file for yolact. Please download it into `yolact_ROS/src/weights` also. Download your weights from [here](https://github.com/dbolya/yolact). For conveniences, the download links are provided as below.
 Next, please clone mot package in same way and paste resources to `~/tracking_ws/src/mot/src`. Here is mot clone command
 ```Terminal
 cd ~/YOUR_DIRECTORY
@@ -41,6 +42,6 @@ git clone https://github.com/mabhisharma/Multi-Object-Tracking-with-Kalman-Filte
 ```
 All installations done. Now you ready to use `Object-Tracking-with-YOLACT`. (**Note : You should be ready on prerequisites for using yolact.**)
 ## Shortcuts
-The source-codes are pasted in same directory location of `yolact` and `mot`. Also, packages work on ROS catkin workspace. Here is simple installation procedure. Basically 'yolact' prerequisites like virtual env, tensorflow, ... should be ready before shortcut.
+
 
 
