@@ -12,18 +12,18 @@ This is an object tracking alogorithm using yolact segmentation detector. The al
 <img src = "https://user-images.githubusercontent.com/78340346/170453504-63f05509-4b74-4953-b5af-d9297a352fd4.png" width=640 height=480>
 
 ## Installation
-**Create workspace**
+Create workspace
 ```Terminal
 mkdir -p tracking_ws/src
 cd tracking_ws
 catkin_make
 ```
-**Create yolact_ROS package**
+Create yolact_ROS package
 ```
 cd ~/tracking_ws/src
 catkin_create_pkg yolact_ROS rospy std_msgs
 ```
-**git clone the yolact**
+git clone the yolact
 ```
 cd yolact_ROS/src
 git clone https://github.com/dbolya/yolact.git .
