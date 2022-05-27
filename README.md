@@ -1,5 +1,5 @@
 # Object-Tracking-with-YOLACT
-This is an object tracking alogorithm using yolact segmentation detector. The algorithm consists of 2 main packages : `mot`, `yolact_ROS` and communicate with ROS. To obtain position value of objects, we used depth camera model `D435i` of realsense company. This is overall tracking workflow.
+This is an object tracking alogorithm using yolact segmentation detector. The algorithm consists of 2 main packages : `mot`, `yolact_ROS` and communicate with ROS. To obtain position value of objects, we used depth camera model `D435i` of realsense company. Also, this algorithm only detect for person. This is overall tracking workflow.
 1. Yolact find the object and its instance segmentation
 2. Calculate center point of segmentations
 3. Obtain position values(x,y,z) of center points using depth camera
@@ -41,7 +41,20 @@ git clone https://github.com/mabhisharma/Multi-Object-Tracking-with-Kalman-Filte
 # Paste resources to ~/tracking_ws/src/mot/src
 ```
 All installations done. Now you ready to use `Object-Tracking-with-YOLACT`. (**Note : You should be ready on prerequisites for using yolact.**)
-## Shortcuts
-
-
+## Run shourtcuts
+rosrun yolact
+Terminal :
+```Terminal
+cd ~/tracking_ws
+source devel/setup.bash
+conda activate yolact
+rosrun yolact_ROS eval_ROS.py --trained_model=src/yolact_ROS/src/weights/yolact_resnet50_54_800000.pth --score_threshold=0.5 --top_k=15 --image=depth
+```
+rosrun mot
+Terminal :
+```
+cd ~/tracking_ws
+source devel/setup.bash
+rosrun mot object_track_ROS.py 
+```
 
