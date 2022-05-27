@@ -15,22 +15,32 @@ This is an object tracking alogorithm using yolact segmentation detector. The al
 Create workspace
 ```Terminal
 mkdir -p tracking_ws/src
-cd tracking_ws
+```
+Clone `Object-Tracking-with-YOLACT` package. 
+```Terminal
+cd ~/tracking_ws/src
+git clone https://github.com/choonghyun-park/Object-Tracking-with-YOLACT.git .
+```
+cakin_make to build your directory
+```Terminal
+cd ..
 catkin_make
 ```
-Create yolact_ROS package
+This repository only include additional source code for tracking alogorithm. Therefore, you should clone `yolact` and `mot` packages.
+First, please clone yolact any of your directory and paste all resources to `~/tracking_ws/src/yolact_ROS/src`(Not including root directory). Here is yolact clone command
+```Terminal
+cd ~/YOUR_DIRECTORY
+git clone https://github.com/dbolya/yolact.git
+# Paste resources to ~/tracking_ws/src/yolact_ROS/src
 ```
-cd ~/tracking_ws/src
-catkin_create_pkg yolact_ROS rospy std_msgs
+Next, please clone mot package in same way and paste resources to `~/tracking_ws/src/mot/src`. Here is mot clone command
+```Terminal
+cd ~/YOUR_DIRECTORY
+git clone https://github.com/mabhisharma/Multi-Object-Tracking-with-Kalman-Filter.git
+# Paste resources to ~/tracking_ws/src/mot/src
 ```
-git clone the yolact
-```
-cd yolact_ROS/src
-git clone https://github.com/dbolya/yolact.git .
-```
-Download `Object-Tracking-with-YOLACT` in your desktop and paste `yolact_ROS/src/eval_ROS` to `yolact_ROS/src`
-
-
+All installations done. Now you ready to use `Object-Tracking-with-YOLACT`. **Note : You should be ready on prerequisites for using yolact**
 ## Shortcuts
 The source-codes are pasted in same directory location of `yolact` and `mot`. Also, packages work on ROS catkin workspace. Here is simple installation procedure. Basically 'yolact' prerequisites like virtual env, tensorflow, ... should be ready before shortcut.
+
 
