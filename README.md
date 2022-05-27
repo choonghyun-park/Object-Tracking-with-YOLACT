@@ -33,7 +33,7 @@ cd ~/YOUR_DIRECTORY
 git clone https://github.com/dbolya/yolact.git
 # Paste resources to ~/tracking_ws/src/yolact_ROS/src
 ```
-You need the weights file for yolact. Please download it into `yolact_ROS/src/weights` also. Download your weights from [here](https://github.com/dbolya/yolact). For conveniences, the download links are provided as below.
+You need the weights file for yolact. Please download it into `yolact_ROS/src/weights` also. Download your weights from [here](https://github.com/dbolya/yolact). \
 Next, please clone mot package in same way and paste resources to `~/tracking_ws/src/mot/src`. Here is mot clone command
 ```Terminal
 cd ~/YOUR_DIRECTORY
