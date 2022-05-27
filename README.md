@@ -21,9 +21,14 @@ catkin_make
 **Create yolact_ROS package**
 ```
 cd ~/tracking_ws/src
-
-
+catkin_create_pkg yolact_ROS rospy std_msgs
 ```
+**git clone the yolact**
+```
+cd yolact_ROS/src
+git clone https://github.com/dbolya/yolact.git .
+```
+Download `Object-Tracking-with-YOLACT` in your desktop and paste `yolact_ROS/src/eval_ROS` to `yolact_ROS/src`
 
 
 ## Shortcuts
