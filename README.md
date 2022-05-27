@@ -42,7 +42,7 @@ git clone https://github.com/mabhisharma/Multi-Object-Tracking-with-Kalman-Filte
 ```
 All installations done. Now you ready to use `Object-Tracking-with-YOLACT`. (**Note : You should be ready on prerequisites for using yolact.**)
 ## Run shourtcuts
-roscore
+roscore\
 Terminal:
 ```terminal
 roscore
