@@ -39,7 +39,7 @@ cd ~/YOUR_DIRECTORY
 git clone https://github.com/mabhisharma/Multi-Object-Tracking-with-Kalman-Filter.git
 # Paste resources to ~/tracking_ws/src/mot/src
 ```
-All installations done. Now you ready to use `Object-Tracking-with-YOLACT`. (**Note : You should be ready on prerequisites for using yolact.)**
+All installations done. Now you ready to use `Object-Tracking-with-YOLACT`. (**Note : You should be ready on prerequisites for using yolact.**)
 ## Shortcuts
 The source-codes are pasted in same directory location of `yolact` and `mot`. Also, packages work on ROS catkin workspace. Here is simple installation procedure. Basically 'yolact' prerequisites like virtual env, tensorflow, ... should be ready before shortcut.
 
