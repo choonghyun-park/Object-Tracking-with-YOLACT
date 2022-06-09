@@ -131,25 +131,4 @@ source devel/setup.bash
 rosrun mot object_track_ROS.py 
 ```
 
-## F. Run shourtcuts
-**roscore**\
-Terminal:
-```terminal
-roscore
-```
-**yolact_ROS**\
-Terminal :
-```Terminal
-cd ~/tracking_ws
-source devel/setup.bash
-conda activate yolact
-rosrun yolact_ROS eval_ROS.py --trained_model=src/yolact_ROS/src/weights/yolact_resnet50_54_800000.pth --score_threshold=0.5 --top_k=15 --image=depth
-```
-**mot**\
-Terminal :
-```
-cd ~/tracking_ws
-source devel/setup.bash
-rosrun mot object_track_ROS.py 
-```
 
